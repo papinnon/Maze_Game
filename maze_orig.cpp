@@ -3,7 +3,6 @@
 #include <string.h>
 #include <time.h>
 #include <assert.h>
-#include <klee/klee.h>
 enum  shit
 {
 	width = 27,
@@ -155,15 +154,13 @@ int main()
 	init();
 	draw(width, height);
 	memset(prog, 0, 0x1000);
-	//read(0, prog, 0x1000);
-	klee_make_symbolic(prog, 0x1000, "prog");
+	read(0, prog, 0x1000);
 	while(prog[i] != '\0')
 	{
 		int tx =x;
 		int ty=y;
 		if(win)
 		{
-			klee_assert(0);
 			std::cout << "You Win!\n"<<std::endl;
 			return 0;
 		}
